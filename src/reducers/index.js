@@ -1,11 +1,11 @@
 import app from './app';
-import github from './github';
-import student from './student';
+import students from './students';
+import marks from './marks';
 import user from './user';
 
 export default {
   ...app,
-  ...github,
   ...user,
-  ...student,
+  ...students,
+  ...marks,
 };

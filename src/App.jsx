@@ -6,6 +6,7 @@ import { Router, Switch, Route } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import styled, { css, ThemeProvider } from 'styled-components';
 import treeChanges from 'tree-changes';
+import Modal from 'react-modal';
 
 import history from 'modules/history';
 import theme, { headerHeight } from 'modules/theme';
@@ -15,16 +16,18 @@ import config from 'config';
 import { showAlert } from 'actions';
 
 import Home from 'routes/Home';
-import Private from 'routes/Private';
+import Students from 'routes/Students';
+import StudentDetails from 'routes/StudentDetails';
 import NotFound from 'routes/NotFound';
 
 import Header from 'components/Header';
 import SystemAlerts from 'components/SystemAlerts';
 
-import Footer from 'components/Footer';
 import GlobalStyles from 'components/GlobalStyles';
 import RoutePublic from 'components/RoutePublic';
 import RoutePrivate from 'components/RoutePrivate';
+
+Modal.setAppElement('#root');
 
 const AppWrapper = styled.div`
   display: flex;
@@ -89,13 +92,17 @@ export class App extends React.Component {
                 />
                 <RoutePrivate
                   isAuthenticated={user.isAuthenticated}
-                  path="/private"
-                  component={Private}
+                  path="/students"
+                  component={Students}
+                />
+                <RoutePrivate
+                  isAuthenticated={user.isAuthenticated}
+                  path="/marks/:id"
+                  component={StudentDetails}
                 />
                 <Route component={NotFound} />
               </Switch>
             </Main>
-            <Footer />
             <SystemAlerts />
             <GlobalStyles />
           </AppWrapper>

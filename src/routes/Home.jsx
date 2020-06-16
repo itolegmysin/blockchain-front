@@ -9,7 +9,6 @@ import { login } from 'actions/index';
 import { Button, Container, Text, utils } from 'styled-minimal';
 import Background from 'components/Background';
 import Icon from 'components/Icon';
-import Logo from 'components/Logo';
 
 const { spacer } = utils;
 
@@ -70,9 +69,7 @@ export class Home extends React.PureComponent {
     return (
       <Background key="Home" data-testid="HomeWrapper">
         <HomeContainer verticalPadding>
-          <Header>
-            <Logo type="logo" />
-          </Header>
+          <Header />
           <Heading>{config.name}</Heading>
           <Button
             animate={user.status === 'running'}
@@ -82,7 +79,7 @@ export class Home extends React.PureComponent {
             data-testid="Login"
           >
             <Icon name="sign-in" />
-            <Text ml={2}>Start</Text>
+            <Text ml={2}>Login</Text>
           </Button>
         </HomeContainer>
       </Background>

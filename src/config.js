@@ -4,8 +4,8 @@
  */
 
 const config = {
-  name: 'React Redux Saga Boilerplate',
-  description: 'Boilerplate with React and Redux with Redux Saga',
+  name: 'VSU Blockchain system',
+  description: 'Blockchain system; it allows teachers to put ',
 };
 
 export default config;

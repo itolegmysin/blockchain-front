@@ -18,12 +18,6 @@ export const ActionTypes = keyMirror({
   USER_LOGOUT: undefined,
   USER_LOGOUT_SUCCESS: undefined,
   USER_LOGOUT_FAILURE: undefined,
-  GITHUB_GET_REPOS: undefined,
-  GITHUB_GET_REPOS_SUCCESS: undefined,
-  GITHUB_GET_REPOS_FAILURE: undefined,
-  STUDENTS_GET: undefined,
-  STUDENTS_GET_SUCCESS: undefined,
-  STUDENTS_GET_FAILURE: undefined,
   SHOW_ALERT: undefined,
   HIDE_ALERT: undefined,
 });

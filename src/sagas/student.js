@@ -1,38 +1,44 @@
 /**
- * @module Sagas/GitHub
- * @desc GitHub
+ * @module Sagas/Student
+ * @desc Student
  */
 
-import { all, call, put, takeLatest } from 'redux-saga/effects';
-import { request } from 'modules/client';
+import { all, delay, put, takeLatest } from 'redux-saga/effects';
 
-import { ActionTypes } from 'constants/index';
+import { StudentsActionTypes } from 'constants/action-types/students';
 
 /**
- * Get Repos
+ * Get Students
  *
  * @param {Object} action
  *
  */
 export function* getStudents() {
   try {
-    const response = yield call(request, 'http://localhost:4000/api/students');
+    // const response = yield call(request, 'http://localhost:4000/api/students');
+    yield delay(500);
     yield put({
-      type: ActionTypes.STUDENTS_GET_SUCCESS,
-      payload: { data: response },
+      type: StudentsActionTypes.STUDENTS_GET_SUCCESS,
+      payload: {
+        data: [
+          { _id: 1, name: 'Oleg Mysin', course: '4', speciality: 'New speciality' },
+          { _id: 2, name: 'Yan Koshelev', course: '2', speciality: 'Second speciality' },
+          { _id: 3, name: 'Maxim Logurev', course: '2', speciality: 'Second speciality' },
+        ],
+      },
     });
   } catch (err) {
     /* istanbul ignore next */
     yield put({
-      type: ActionTypes.STUDENTS_GET_FAILURE,
+      type: StudentsActionTypes.STUDENTS_GET_FAILURE,
       payload: err,
     });
   }
 }
 
 /**
- * GitHub Sagas
+ * Students Sagas
  */
 export default function* root() {
-  yield all([takeLatest(ActionTypes.STUDENTS_GET, getStudents)]);
+  yield all([takeLatest(StudentsActionTypes.STUDENTS_GET, getStudents)]);
 }

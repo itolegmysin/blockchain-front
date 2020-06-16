@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { appColor, headerHeight } from 'modules/theme';
 
 import { logOut } from 'actions';
 
 import { Container, utils } from 'styled-minimal';
 import Icon from 'components/Icon';
-import Logo from 'components/Logo';
 
 const { responsive, spacer } = utils;
 
@@ -39,6 +39,11 @@ const HeaderContainer = styled(Container)`
   justify-content: space-between;
   padding-bottom: ${spacer(2)};
   padding-top: ${spacer(2)};
+`;
+
+const Logo = styled.h1`
+  color: white;
+  cursor: pointer;
 `;
 
 const Logout = styled.button`
@@ -76,7 +81,9 @@ export default class Header extends React.PureComponent {
     return (
       <HeaderWrapper>
         <HeaderContainer>
-          <Logo type="logo" />
+          <Link to="/students">
+            <Logo>VSU</Logo>
+          </Link>
           <Logout onClick={this.handleClickLogout}>
             <span>logout</span>
             <Icon name="sign-out" width={16} />

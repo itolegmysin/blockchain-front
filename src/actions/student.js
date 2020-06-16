@@ -1,12 +1,12 @@
 // @flow
 /**
- * @module Actions/User
- * @desc User Actions
+ * @module Actions/Students
+ * @desc Students Actions
  */
 import { createActions } from 'redux-actions';
 
-import { ActionTypes } from 'constants/index';
+import { StudentsActionTypes } from 'constants/action-types/students';
 
 export const { studentsGet: getStudents } = createActions({
-  [ActionTypes.STUDENTS_GET]: () => ({}),
+  [StudentsActionTypes.STUDENTS_GET]: () => ({}),
 });
