@@ -24,6 +24,9 @@ export default {
         draft.message = parseError(payload.message);
         draft.status = STATUS.ERROR;
       },
+      [StudentsActionTypes.ADD_STUDENT_SUCCESS]: (draft, { payload }) => {
+        draft.collection = [...draft.collection, payload.data];
+      },
     },
     studentsState,
   ),

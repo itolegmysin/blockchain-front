@@ -11,15 +11,8 @@ import Loader from 'components/Loader';
 import { getMarksByStudentId } from 'actions';
 import { addMarkForStudentById } from 'actions/mark';
 import { selectMarksByStudentId, selectMarksStatus } from '../store-selectors/marks';
+import { HeaderWrapper } from '../components/HeaderWrapper';
 
-const HeaderWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-const AddButton = styled(Button)`
-  margin-left: 20px;
-`;
 const MarkInput = styled.input`
   min-width: 50px;
   height: 35px;
@@ -100,7 +93,7 @@ const StudentDetails = () => {
       <Container verticalPadding>
         <HeaderWrapper>
           <h1>Marks for student {id}</h1>
-          <AddButton onClick={toggleModal}>Add Mark</AddButton>
+          <Button onClick={toggleModal}>Add Mark</Button>
         </HeaderWrapper>
         {output}
         <Modal

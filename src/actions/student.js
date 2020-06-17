@@ -10,3 +10,7 @@ import { StudentsActionTypes } from 'constants/action-types/students';
 export const { studentsGet: getStudents } = createActions({
   [StudentsActionTypes.STUDENTS_GET]: () => ({}),
 });
+
+export const { addStudent } = createActions({
+  [StudentsActionTypes.ADD_STUDENT]: data => ({ data }),
+});
