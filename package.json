@@ -218,8 +218,7 @@
   ],
   "husky": {
     "hooks": {
-      "post-merge": "repo-tools install-packages",
-      "pre-commit": "repo-tools check-remote && lint-staged && flow"
+      "post-merge": "repo-tools install-packages"
     }
   },
   "size-limit": [

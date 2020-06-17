@@ -3,10 +3,11 @@
  * @desc Student
  */
 
-import { all, delay, put, takeLatest } from 'redux-saga/effects';
+import { all, delay, put, takeLatest, call } from 'redux-saga/effects';
 
 import { MarksActionTypes } from 'constants/action-types/marks';
 import { showAlert } from 'actions';
+import { request } from '../modules/client';
 
 /**
  * Get Marks By Student id
@@ -68,31 +69,38 @@ export function* getMarksByStudentId(action) {
  */
 export function* addMarkForStudentById(action) {
   try {
-    const { id: studentId, mark } = action.payload;
-    // const response = yield call(request, 'http://localhost:4000/api/students');
+    const { mark, subject, id: studentId } = action.payload;
+    yield call(request, 'http://localhost:4000/api/marks', {
+      method: 'POST',
+      payload: {
+        mark,
+        subject,
+        studentId,
+      },
+    });
     yield delay(500);
-    yield put({
-      type: MarksActionTypes.ADD_MARK_FOR_STUDENT_BY_ID_SUCCESS,
-      payload: {
-        _id: `${4}${studentId}`,
-        studentId,
-        subjectId: 3,
-        subjectName: 'Third subject',
-        mark,
-        createdAt: new Date().toISOString(),
-      },
-    });
-    yield put({
-      type: MarksActionTypes.ADD_MARK_FOR_STUDENT_BY_ID_SUCCESS,
-      payload: {
-        _id: `${4}${studentId}`,
-        studentId,
-        subjectId: 3,
-        subjectName: 'Third subject',
-        mark,
-        createdAt: new Date().toISOString(),
-      },
-    });
+    // yield put({
+    //   type: MarksActionTypes.ADD_MARK_FOR_STUDENT_BY_ID_SUCCESS,
+    //   payload: {
+    //     _id: `${4}${studentId}`,
+    //     studentId,
+    //     subjectId: 3,
+    //     subjectName: 'Third subject',
+    //     mark,
+    //     createdAt: new Date().toISOString(),
+    //   },
+    // });
+    // yield put({
+    //   type: MarksActionTypes.ADD_MARK_FOR_STUDENT_BY_ID_SUCCESS,
+    //   payload: {
+    //     _id: `${4}${studentId}`,
+    //     studentId,
+    //     subjectId: 3,
+    //     subjectName: 'Third subject',
+    //     mark,
+    //     createdAt: new Date().toISOString(),
+    //   },
+    // });
     yield put(showAlert('New mark successfully added', { variant: 'success', icon: 'bell' }));
   } catch (err) {
     /* istanbul ignore next */

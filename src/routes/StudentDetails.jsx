@@ -19,6 +19,13 @@ const MarkInput = styled.input`
   margin-right: 10px;
 `;
 
+const SubjectInput = styled.input`
+  min-width: 100px;
+  height: 35px;
+  margin-top: 10px;
+  margin-right: 10px;
+`;
+
 const customStyles = {
   content: {
     top: '50%',
@@ -34,6 +41,7 @@ const StudentDetails = () => {
   const { id } = useParams();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [newMark, setNewMark] = useState(1);
+  const [newSubject, setSubject] = useState('');
   const data = useSelector(selectMarksByStudentId(id));
   const marksStatus = useSelector(selectMarksStatus);
   const dispatch = useDispatch();
@@ -45,6 +53,7 @@ const StudentDetails = () => {
   const toggleModal = useCallback(() => {
     setIsModalVisible(!isModalVisible);
     setNewMark(1);
+    setSubject('');
   }, [isModalVisible, setIsModalVisible]);
 
   const handleMarkValueChange = useCallback(
@@ -54,10 +63,17 @@ const StudentDetails = () => {
     [setNewMark],
   );
 
+  const handleSubjectValueChange = useCallback(
+    event => {
+      setSubject(event.target.value);
+    },
+    [setSubject],
+  );
+
   const handleAddMark = useCallback(() => {
-    dispatch(addMarkForStudentById(id, newMark));
+    dispatch(addMarkForStudentById(id, newMark, newSubject));
     toggleModal();
-  }, [toggleModal, addMarkForStudentById, dispatch, newMark, id]);
+  }, [toggleModal, addMarkForStudentById, dispatch, newMark, id, newSubject]);
 
   let output;
 
@@ -111,6 +127,7 @@ const StudentDetails = () => {
               min={1}
               max={9}
             />
+            <SubjectInput value={newSubject} onChange={handleSubjectValueChange} />
             <Button onClick={handleAddMark}>Add</Button>
           </form>
         </Modal>

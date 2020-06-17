@@ -12,5 +12,5 @@ export const { marksGetByStudentId: getMarksByStudentId } = createActions({
 });
 
 export const { addMarkForStudentById } = createActions({
-  [MarksActionTypes.ADD_MARK_FOR_STUDENT_BY_ID]: (id, mark) => ({ id, mark }),
+  [MarksActionTypes.ADD_MARK_FOR_STUDENT_BY_ID]: (id, mark, subject) => ({ id, mark, subject }),
 });
